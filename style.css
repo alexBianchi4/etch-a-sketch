@@ -46,3 +46,32 @@ body{
 .button:hover{
     background: purple;
 }
+
+.circle{
+    background:orange;
+    display: flex;
+    border-radius: 50%;
+    width: 10vh;
+}
+
+.circle::before{
+    content:"";
+    padding-top: 100%;
+    display: block;
+}
+
+#colour-picker{
+    border:none;
+    width:100px;
+    background-color: transparent;
+}
+
+#colour-picker::-webkit-color-swatch{
+    border-radius: 50%;
+    border:none;
+}
+
+#colour-picker::-moz-color-swatch{
+    border-radius: 50%;
+    border:none;
+}

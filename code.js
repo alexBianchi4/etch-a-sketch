@@ -1,11 +1,11 @@
-let gridclick = false;
-let gridlines = '1px';
-let rainbow = false;
-let prevcolour = "000000";
-let colour = "000000"; // default paint colour is black
+let gridclick = false; // is the user currently clicking on the grid area
+let gridlines = '1px'; // size of the grid lines
+let rainbow = false; // is rainbow mode on or off
+let prevcolour = "#000000";
+let colour = "#000000"; // default paint colour is black
 // when rainbow mode is on colours are selected from this list. Check the read me for the source of these colours
-let palette = ['ff9ff3','f368e0', 'feca57', 'ff9f43', '#ff6b6b', 'ee5253','#48dbfb','0abde3','1dd1a1','10ac84',
-                '00d2d3','01a3a4','54a0ff','2e86de','5f27cd','341f97','c8d6e5','8395a7','576574','222f3e'];
+let palette = ['#ff9ff3','#f368e0', '#feca57', '#ff9f43', '#ff6b6b', '#ee5253','#48dbfb','#0abde3','#1dd1a1','#10ac84',
+                '#00d2d3','#01a3a4','#54a0ff','#2e86de','#5f27cd','#341f97','#c8d6e5','#8395a7','#576574','#222f3e'];
 
 /* EVENT LISTENERS START */
 
@@ -23,7 +23,7 @@ toggle_lines.addEventListener('click',() => {
     document.documentElement.style.setProperty('--border', gridlines);
 });
 
-// clear event button listener
+// clear event button event listener
 const clear = document.querySelector('#clear');
 clear.addEventListener('click',() => {
     //select all the elemtns that have the gridSquare class and then set their backgrounds to white
@@ -45,6 +45,13 @@ rainbow_button.addEventListener('click',() => {
         rainbow = true;
         prevcolour = colour;
     }
+});
+
+// color picker event listener
+const colour_picker = document.querySelector("#colour-picker")
+colour_picker.addEventListener("input",()=>{
+    rainbow=false;
+    colour = colour_picker.value;
 });
 
 /* EVENT LISTENERS END */
@@ -71,14 +78,14 @@ function changeGridSize(n){
                 if(rainbow){
                     pickRandom();
                 }
-                newSquare.style.background = '#'+colour;
+                newSquare.style.background = colour;
             });
             newSquare.addEventListener('mouseover', () => {
                 if(gridclick){
                     if(rainbow){
                         pickRandom();
                     }
-                    newSquare.style.background = '#'+colour;
+                    newSquare.style.background = colour;
                 }
             });
         }   
