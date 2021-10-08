@@ -1,6 +1,11 @@
 let gridclick = false;
 let gridlines = '1px';
-let cols = 16;
+let rainbow = false;
+let prevcolour = "000000";
+let colour = "000000"; // default paint colour is black
+// when rainbow mode is on colours are selected from this list. Check the read me for the source of these colours
+let palette = ['ff9ff3','f368e0', 'feca57', 'ff9f43', '#ff6b6b', 'ee5253','#48dbfb','0abde3','1dd1a1','10ac84',
+                '00d2d3','01a3a4','54a0ff','2e86de','5f27cd','341f97','c8d6e5','8395a7','576574','222f3e'];
 
 /* EVENT LISTENERS START */
 
@@ -28,11 +33,30 @@ clear.addEventListener('click',() => {
     }
 });
 
+// rainbow button event listener
+const rainbow_button = document.querySelector('#rainbow');
+rainbow_button.addEventListener('click',() => {
+    // we store the current colour if rainbow mode is on so that when it is off
+    // we can restore the previous colour
+    if(rainbow){
+        rainbow = false;
+        colour = prevcolour;
+    }else{
+        rainbow = true;
+        prevcolour = colour;
+    }
+});
+
 /* EVENT LISTENERS END */
+
+/* FUNCTIONS START*/
+
+function pickRandom(){
+    colour = palette[Math.floor(Math.random() * palette.length)];
+}
 
 // takes a number n and creates a n x n grid
 function changeGridSize(n){
-    cols = n;
     // update the css variable that stores number of columns
     document.documentElement.style.setProperty('--cols', n);   
     //create n x n grid
@@ -43,10 +67,25 @@ function changeGridSize(n){
             newSquare.classList.add('gridSquare')
             // add it to the grid and assign an event listener to it for painting
             grid.appendChild(newSquare);
-            newSquare.addEventListener('mouseover', () => {(gridclick)?newSquare.style.background = "purple":null;});
+            newSquare.addEventListener('click', () => {
+                if(rainbow){
+                    pickRandom();
+                }
+                newSquare.style.background = '#'+colour;
+            });
+            newSquare.addEventListener('mouseover', () => {
+                if(gridclick){
+                    if(rainbow){
+                        pickRandom();
+                    }
+                    newSquare.style.background = '#'+colour;
+                }
+            });
         }   
     }
 }
+
+/* FUNCTIONS END*/
 
 // default grid is 16 x 16
 changeGridSize(16);
