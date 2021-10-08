@@ -1,0 +1,48 @@
+:root{
+    --cols:16;
+    --border:1px;
+}
+
+body{
+    background: white;
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.grid{
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(var(--cols), calc(75vh / var(--cols)));
+    border: 1px solid black;
+}
+
+.gridSquare{
+    background: white;
+    border:var(--border) solid gainsboro;
+    caret-color: transparent; /* hides the blinking cursor on the grids*/
+    user-select: none; /* users can't drag invisible content */
+}
+
+.gridSquare::before{
+    content:"";
+    padding-top: 100%;
+    display: block;
+}
+
+.button-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.button{
+    background: grey;
+}
+
+.button:hover{
+    background: purple;
+}
