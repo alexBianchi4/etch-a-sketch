@@ -11,9 +11,9 @@ let palette = ['#ff9ff3','#f368e0', '#feca57', '#ff9f43', '#ff6b6b', '#ee5253','
 
 // grid event listeners
 const grid = document.querySelector('#grid');
-grid.addEventListener('mousedown',() => {gridclick = true;});
-grid.addEventListener('mouseup',() => {gridclick = false;});
-grid.addEventListener('mouseleave',() => {gridclick = false;});
+grid.addEventListener('mousedown',() => {gridclick = true;});   // clicked down, start drawing
+grid.addEventListener('mouseup',() => {gridclick = false;});    // let go of left click, stop drawing
+grid.addEventListener('mouseleave',() => {gridclick = false;}); // mouse left the grid area, stop drawing
 
 // toggle lines button event listener
 const toggle_lines = document.querySelector('#toggle-lines');
@@ -25,13 +25,7 @@ toggle_lines.addEventListener('click',() => {
 
 // clear event button event listener
 const clear = document.querySelector('#clear');
-clear.addEventListener('click',() => {
-    //select all the elemtns that have the gridSquare class and then set their backgrounds to white
-    let doc = document.getElementsByClassName('gridSquare');
-    for(let i = 0; i < doc.length; i++){
-        doc[i].style.background = "white";
-    }
-});
+clear.addEventListener('click',() => {clearGrid()});
 
 // rainbow button event listener
 const rainbow_button = document.querySelector('#rainbow');
@@ -52,6 +46,14 @@ const colour_picker = document.querySelector("#colour-picker")
 colour_picker.addEventListener("input",()=>{
     rainbow=false;
     colour = colour_picker.value;
+});
+
+// slider and output event listener
+const slider = document.querySelector("#slider");
+const output = document.querySelector("#output");
+slider.addEventListener("input",()=>{
+    resetGrid(slider.value);
+    output.innerHTML = (slider.value + ' x ' + slider.value);
 });
 
 /* EVENT LISTENERS END */
@@ -90,6 +92,21 @@ function changeGridSize(n){
             });
         }   
     }
+}
+
+// sets the background colour of all squares to white
+function clearGrid(){
+   //select all the elements that have the gridSquare class and then set their backgrounds to white
+   let doc = document.getElementsByClassName('gridSquare');
+   for(let i = 0; i < doc.length; i++){
+       doc[i].style.background = "white";
+   } 
+}
+
+// deletes all the squares and creates a new n x n grid
+function resetGrid(n){
+    grid.innerHTML='';
+    changeGridSize(n);
 }
 
 /* FUNCTIONS END*/
