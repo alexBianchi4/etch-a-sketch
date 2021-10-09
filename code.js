@@ -1,8 +1,8 @@
 let gridclick = false; // is the user currently clicking on the grid area
 let gridlines = '1px'; // size of the grid lines
 let rainbow = false; // is rainbow mode on or off
-let prevcolour = "#FF0000";
-let colour = "#FF0000"; // default paint colour is red
+let prevcolour = "#77A6F7";
+let colour = "#77A6F7"; // default colour
 // when rainbow mode is on colours are selected from this list. Check the read me for the source of these colours
 let palette = ['#ff9ff3','#f368e0', '#feca57', '#ff9f43', '#ff6b6b', '#ee5253','#48dbfb','#0abde3','#1dd1a1','#10ac84',
                 '#00d2d3','#01a3a4','#54a0ff','#2e86de','#5f27cd','#341f97','#c8d6e5','#8395a7','#576574','#222f3e'];
@@ -65,6 +65,283 @@ colour_button.addEventListener('click', ()=>{
 
 /* FUNCTIONS START*/
 
+function setup(){
+    document.documentElement.style.setProperty('--cols', 24); 
+    //row 2
+    createSquare(9,"white");
+    createSquare(1,"black");
+    createSquare(3,"white");
+    createSquare(1,"black");
+    createSquare(10,"white");
+    //row 3
+    createSquare(8,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(9,"white");
+    //row 4
+    createSquare(7,"white");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(8,"white");
+    //row 5
+    createSquare(7,"white");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(8,"white");
+    //row 6  
+    createSquare(7,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(5,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(8,"white");
+    //row 7
+    createSquare(6,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(1,"darkgreen");
+    createSquare(1,"green");
+    createSquare(1,"darkgreen");
+    createSquare(2,"green");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(7,"white");
+    //row 8
+    createSquare(5,"white");
+    createSquare(1,"black");
+    createSquare(3,"grey");
+    createSquare(1,"black");
+    createSquare(1,"darkgreen");
+    createSquare(1,"green");
+    createSquare(1,"darkgreen");
+    createSquare(1,"green");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(6,"white");
+    //row 9
+    createSquare(5,"white");
+    createSquare(1,"black");
+    createSquare(4,"grey");
+    createSquare(1,"black");
+    createSquare(2,"darkgreen");
+    createSquare(1,"black");
+    createSquare(3,"grey");
+    createSquare(1,"black");
+    createSquare(6,"white");
+    //row 10
+    createSquare(4,"white");
+    createSquare(1,"black");
+    createSquare(6,"grey");
+    createSquare(2,"black");
+    createSquare(5,"grey");
+    createSquare(1,"black");
+    createSquare(5,"white");
+    //row 11
+    createSquare(2,"white");
+    createSquare(3,"black");
+    createSquare(2,"grey");
+    createSquare(1,"white");
+    createSquare(7,"grey");
+    createSquare(1,"white");
+    createSquare(2,"grey");
+    createSquare(3,"black");
+    createSquare(3,"white");
+    //row 12
+    createSquare(3,"white");
+    createSquare(2,"black");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(1,"white");
+    createSquare(5,"grey");
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(2,"black");
+    createSquare(4,"white");
+    //row 13
+    createSquare(1,"white");
+    createSquare(3,"black");
+    createSquare(3,"grey");
+    createSquare(1,"white");
+    createSquare(2,"grey");
+    createSquare(3,"black");
+    createSquare(2,"grey");
+    createSquare(1,"white");
+    createSquare(3,"grey");
+    createSquare(3,"black");
+    createSquare(2,"white");
+    //row 14
+    createSquare(2,"white");
+    createSquare(1,"black");
+    createSquare(8,"grey");
+    createSquare(1,"black");
+    createSquare(8,"grey");
+    createSquare(1,"black");
+    createSquare(3,"white");
+    //row 15
+    createSquare(2,"white");
+    createSquare(1,"black");
+    createSquare(17,"grey");
+    createSquare(1,"black");
+    createSquare(3,"white"); 
+    //row 16
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(6,"grey");
+    createSquare(7,"white");
+    createSquare(6,"grey");
+    createSquare(1,"black");
+    createSquare(2,"white"); 
+    //row 17
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(5,"grey");
+    createSquare(9,"white");
+    createSquare(5,"grey");
+    createSquare(1,"black");
+    createSquare(2,"white"); 
+    //row 18
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(3,"white");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(3,"white");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(2,"white");
+    //row 19
+    createSquare(1,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(13,"white");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(2,"white"); 
+    //row 20
+    createSquare(1,"white");
+    createSquare(2,"black");
+    createSquare(2,"grey");
+    createSquare(3,"white");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(3,"white");
+    createSquare(2,"grey");
+    createSquare(2,"black");
+    createSquare(2,"white");
+    //row 21
+    createSquare(2,"white");
+    createSquare(2,"black");
+    createSquare(1,"grey");
+    createSquare(2,"black");
+    createSquare(9,"white");
+    createSquare(2,"black");
+    createSquare(1,"grey");
+    createSquare(2,"black");
+    createSquare(3,"white"); 
+    //row 22
+    createSquare(3,"white");
+    createSquare(2,"black");
+    createSquare(2,"grey");
+    createSquare(1,"black");
+    createSquare(7,"white");
+    createSquare(1,"black");
+    createSquare(2,"grey");
+    createSquare(2,"black");
+    createSquare(4,"white"); 
+    //row 23
+    createSquare(4,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(5,"white");
+    createSquare(1,"black");
+    createSquare(1,"grey");
+    createSquare(1,"white");
+    createSquare(1,"grey");
+    createSquare(1,"black");
+    createSquare(5,"white"); 
+    //row 24
+    createSquare(4,"white");
+    createSquare(1,"black");
+    createSquare(3,"grey");
+    createSquare(7,"black");
+    createSquare(3,"grey");
+    createSquare(1,"black");
+    createSquare(5,"white"); 
+    //row 24
+    createSquare(5,"white");
+    createSquare(4,"black");
+    createSquare(5,"white");
+    createSquare(4,"black");
+    createSquare(6,"white"); 
+}
+
+function createSquare(num, c){
+    for(let i = 0; i < num; i++){
+        const newSquare = document.createElement('div');
+        newSquare.classList.add('gridSquare')
+        newSquare.addEventListener('click', () => {
+            if(rainbow){
+                newSquare.style.background = pickRandom();
+            }else{
+                newSquare.style.background = colour;
+            }
+        });
+        newSquare.addEventListener('mouseover', () => {
+            if(gridclick){
+                if(rainbow){
+                    newSquare.style.background = pickRandom();
+                }else{
+                    newSquare.style.background = colour;
+                }
+            }
+        });
+        newSquare.style.background = c;
+        grid.appendChild(newSquare);
+    }
+}
+
 function pickRandom(){
     return palette[Math.floor(Math.random() * palette.length)];
 }
@@ -118,5 +395,5 @@ function resetGrid(n){
 
 /* FUNCTIONS END*/
 
-// default grid is 16 x 16
-changeGridSize(16);
+// default grid is 24 x 24
+setup();

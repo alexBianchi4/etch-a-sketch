@@ -1,25 +1,63 @@
 :root{
     --cols:16;
     --border:1px;
+    --background:#FFFFFF;
+    --primary:#77A6F7;
+    --secondary:#D3E3FC;
+}
+
+*{
+    font-family: monospace;
 }
 
 body{
-    background: white;
+    background: var(--background);
+}
+
+h1{
+    justify-self: center;
+    color:var(--primary);
+    font-weight: 600;
+    font-size:5em;
+    letter-spacing: 5px;
+    text-shadow: -1px 1px var(--secondary),
+    -2px 2px var(--secondary),
+    -3px 3px var(--secondary),
+    -4px 4px var(--secondary),
+    -5px 5px var(--secondary),
+    -6px 6px var(--secondary),
+    -7px 7px var(--secondary),
+    -8px 8px var(--secondary),
+    -9px 9px var(--secondary),
+    -10px 10px var(--secondary),
+    -11px 11px var(--secondary),
+    -12px 12px var(--secondary),
+    -13px 13px var(--secondary),
+    -14px 14px var(--secondary);
+}
+
+.header-box{
+   display: flex;
+   width: 100%;
+   justify-content: center;
 }
 
 .container{
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+    gap: 50px;
+    margin-left: 10%;
+    margin-right:10%;
+    
 }
 
 .grid{
     display: grid;
     flex-wrap: wrap;
-    grid-template-columns: repeat(var(--cols), calc(75vh / var(--cols)));
-    border: 1px solid black;
+    grid-template-columns: repeat(var(--cols), calc(70vh / var(--cols)));
+    border: 5px solid var(--secondary);
 }
 
 .gridSquare{
@@ -37,19 +75,36 @@ body{
 
 .button-container{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--secondary);
+    padding: 25px;
 }
+
 .button{
-    background: grey;
+    background: transparent;
+    color:var(--primary);
+    padding: 10px 20px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    align-self: stretch;
 }
 
 .button:hover{
-    background: purple;
+    background: var(--primary);
+    color: var(--secondary);
+}
+
+#output{
+    color:var(--primary);
 }
 
 #colour-picker{
     border:none;
     width:100px;
+    height:100px;
     background-color: transparent;
 }
 
@@ -70,8 +125,7 @@ input[type='range'] {
 input[type='range']::-webkit-slider-runnable-track {
     height: 10px;
     border: 1px solid black;
-    border-radius: 25px;
-    background: white;
+    background: var(--background);  
 }
   
 input[type='range']::-webkit-slider-thumb {
@@ -80,5 +134,5 @@ input[type='range']::-webkit-slider-thumb {
     height: 24px;
     border-radius: 25px;
     margin-top: -8px;
-    background: grey;
+    background: var(--primary);
 }

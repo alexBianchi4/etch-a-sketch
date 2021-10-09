@@ -4,26 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-A-Sketch</title>
+    <title>PIX-ART</title>
     <script src="code.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style.css"/>  
 </head>
 
 <body>
+    <div class="header-box"><h1>PIX-ART STUDIO</h1></div>
     <div class="container">
-        <h1>Etch-A-Sketch</h1>    
-        <div class="grid" id="grid"></div>
         <div class="button-container">
-            <button class="button" id="toggle-lines">Toggle Grid Lines</button>
-            <button class="button" id="clear">Clear Canvas</button>
-            <button class="button" id="rainbow">Rainbow</button>
-            <input type="color" id="colour-picker" value="#ff0000">
-            <input type="range" id="slider" min="1" max="64" value="16">
-            <div id="output">16 x 16</div>
-            <button class="button" id="eraser">Eraser</button>
+            <input type="color" id="colour-picker" value="#77A6F7">
             <button class="button" id="colour-button">Colour</button>
-        </div>
-        
+            <button class="button" id="rainbow">Rainbow</button>
+            <button class="button" id="eraser">Eraser</button>
+            <button class="button" id="clear">Clear Canvas</button>
+            <button class="button" id="toggle-lines">Toggle Grid Lines</button>
+            <div id="output">24 x 24</div>
+            <input type="range" id="slider" min="1" max="64" value="16">
+        </div>     
+        <div class="grid" id="grid"></div>
     </div>    
 </body>
 
