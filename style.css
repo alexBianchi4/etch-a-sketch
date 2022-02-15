@@ -97,6 +97,15 @@ h1{
     color: var(--secondary);
 }
 
+.selected-button{
+    background: var(--primary);
+    color: var(--secondary);
+    padding: 10px 20px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    align-self: stretch;
+}
+
 #output{
     color:var(--primary);
 }

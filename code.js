@@ -1,7 +1,7 @@
 let gridclick = false; // is the user currently clicking on the grid area
 let gridlines = '1px'; // size of the grid lines
-let rainbow = false; // is rainbow mode on or off
-let prevcolour = "#77A6F7";
+let rainbow_on = false; // is rainbow mode on or off
+let eraser_on = false; // is eraser on or off
 let colour = "#77A6F7"; // default colour
 // when rainbow mode is on colours are selected from this list. Check the read me for the source of these colours
 let palette = ['#ff9ff3','#f368e0', '#feca57', '#ff9f43', '#ff6b6b', '#ee5253','#48dbfb','#0abde3','#1dd1a1','#10ac84',
@@ -29,13 +29,18 @@ clear.addEventListener('click',() => {clearGrid()});
 
 // rainbow button event listener
 const rainbow_button = document.querySelector('#rainbow');
-rainbow_button.addEventListener('click',() => {rainbow = rainbow?false:true;});
+rainbow_button.addEventListener('click',() => {
+    rainbow_on = true;
+    changeClass(2);
+});
 
 // color picker event listener
 const colour_picker = document.querySelector('#colour-picker')
 colour_picker.addEventListener('input',()=>{
-    rainbow=false;
+    rainbow_on=false;
+    eraser_on=false;
     colour = colour_picker.value;
+    changeClass(1);
 });
 
 // slider and output event listener
@@ -49,16 +54,17 @@ slider.addEventListener('input',()=>{
 // eraser button event listener
 const eraser = document.querySelector('#eraser');
 eraser.addEventListener('click', ()=>{
-    rainbow=false;
-    prevcolour = colour;
-    colour = '#FFFFFF';
+    rainbow_on=false;
+    eraser_on = true;
+    changeClass(3);
 });
 
 // colour button event listener
 const colour_button = document.querySelector('#colour-button');
 colour_button.addEventListener('click', ()=>{
-    rainbow=false;
-    colour = prevcolour;
+    rainbow_on=false;
+    eraser_on=false;
+    changeClass(1);
 });
 /* EVENT LISTENERS END */
 
@@ -67,6 +73,27 @@ colour_button.addEventListener('click', ()=>{
 // picks a random color from the color palette
 function pickRandom(){
     return palette[Math.floor(Math.random() * palette.length)];
+}
+
+// changes the class of a button when it is selected. This way it stands out and the user knows what is currently selected
+function changeClass(button){
+    colour_button.className= "button";
+    rainbow_button.className="button";
+    eraser.className="button";
+
+    switch (button){
+        case 1: //colour button
+            colour_button.className="selected-button";
+            break;
+        case 2: //rainbow button
+            rainbow_button.className="selected-button";
+            break;
+        case 3: //eraser button
+            eraser.className="selected-button";
+            break; 
+        default:
+            break;
+    }
 }
 
 // takes a number n and creates a n x n grid
@@ -82,16 +109,20 @@ function changeGridSize(n){
             // add it to the grid and assign an event listener to it for painting
             grid.appendChild(newSquare);
             newSquare.addEventListener('click', () => {
-                if(rainbow){
+                if(rainbow_on){
                     newSquare.style.background = pickRandom();
+                }else if(eraser_on){
+                    newSquare.style.background = '#FFFFFF';
                 }else{
                     newSquare.style.background = colour;
                 }
             });
             newSquare.addEventListener('mouseover', () => {
                 if(gridclick){
-                    if(rainbow){
+                    if(rainbow_on){
                         newSquare.style.background = pickRandom();
+                    }else if(eraser_on){
+                        newSquare.style.background = '#FFFFFF';
                     }else{
                         newSquare.style.background = colour;
                     }
@@ -117,7 +148,7 @@ function resetGrid(n){
 }
 /* FUNCTIONS END*/
 
-// below is bunch of code to initialize totoro on the screen when you load the page
+// below is bunch of code to initialize Totoro on the screen when you load the page
 function setup(){
     document.documentElement.style.setProperty('--cols', 24); 
     //row 1
@@ -367,7 +398,9 @@ function setup(){
     createSquare(4,"black");
     createSquare(5,"white");
     createSquare(4,"black");
-    createSquare(6,"white"); 
+    createSquare(6,"white");
+    
+    changeClass(1); //start with the colour button highlighted 
 }
 
 function createSquare(num, c){
@@ -375,16 +408,20 @@ function createSquare(num, c){
         const newSquare = document.createElement('div');
         newSquare.classList.add('gridSquare')
         newSquare.addEventListener('click', () => {
-            if(rainbow){
+            if(rainbow_on){
                 newSquare.style.background = pickRandom();
+            }else if(eraser_on){
+                newSquare.style.background = '#FFFFFF';
             }else{
                 newSquare.style.background = colour;
             }
         });
         newSquare.addEventListener('mouseover', () => {
             if(gridclick){
-                if(rainbow){
+                if(rainbow_on){
                     newSquare.style.background = pickRandom();
+                }else if(eraser_on){
+                    newSquare.style.background = '#FFFFFF';
                 }else{
                     newSquare.style.background = colour;
                 }
